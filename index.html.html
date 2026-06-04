@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maruf Hasan Rokoni — Digital Product Manager</title>
+<title>Maruf Hasan Rokoni — Product Manager</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Geist+Mono:wght@300;400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -12,1073 +12,206 @@
   --font-display: 'Bricolage Grotesque', sans-serif;
   --font-body: 'Instrument Sans', sans-serif;
   --font-mono: 'Geist Mono', monospace;
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-xl: 32px;
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-sm: 8px; --radius-md: 14px; --radius-lg: 22px;
+  --ease: cubic-bezier(0.4,0,0.2,1);
 }
-
 [data-theme="dark"] {
-  --bg: #0c0e12;
-  --bg-2: #111318;
-  --bg-3: #161a22;
-  --bg-card: #13161e;
-  --bg-elevated: #1c2030;
-  --border: rgba(255,255,255,0.07);
-  --border-strong: rgba(255,255,255,0.13);
-  --text: #eef0f5;
-  --text-2: #8892a4;
-  --text-3: #4d5566;
-  --accent: #5b8af0;
-  --accent-2: #3d6de8;
-  --accent-glow: rgba(91,138,240,0.12);
-  --accent-border: rgba(91,138,240,0.25);
-  --green: #34d399;
-  --green-bg: rgba(52,211,153,0.1);
-  --amber: #fbbf24;
+  --bg:#0c0e12; --bg-2:#111318; --bg-3:#161a22; --bg-card:#13161e; --bg-elevated:#1c2030;
+  --border:rgba(255,255,255,0.07); --border-strong:rgba(255,255,255,0.13);
+  --text:#eef0f5; --text-2:#8892a4; --text-3:#4d5566;
+  --accent:#5b8af0; --accent-2:#3d6de8; --accent-glow:rgba(91,138,240,0.12); --accent-border:rgba(91,138,240,0.25);
+  --green:#34d399; --green-bg:rgba(52,211,153,0.1); --amber:#fbbf24; --purple:#a78bfa;
 }
-
 [data-theme="light"] {
-  --bg: #fafbfc;
-  --bg-2: #f3f5f8;
-  --bg-3: #ebeef3;
-  --bg-card: #ffffff;
-  --bg-elevated: #f0f2f6;
-  --border: rgba(0,0,0,0.07);
-  --border-strong: rgba(0,0,0,0.12);
-  --text: #0f1117;
-  --text-2: #4a5568;
-  --text-3: #9aa3b0;
-  --accent: #2d5fd4;
-  --accent-2: #1e4ec7;
-  --accent-glow: rgba(45,95,212,0.08);
-  --accent-border: rgba(45,95,212,0.2);
-  --green: #059669;
-  --green-bg: rgba(5,150,105,0.08);
-  --amber: #d97706;
+  --bg:#fafbfc; --bg-2:#f3f5f8; --bg-3:#ebeef3; --bg-card:#ffffff; --bg-elevated:#f0f2f6;
+  --border:rgba(0,0,0,0.07); --border-strong:rgba(0,0,0,0.12);
+  --text:#0f1117; --text-2:#4a5568; --text-3:#9aa3b0;
+  --accent:#2d5fd4; --accent-2:#1e4ec7; --accent-glow:rgba(45,95,212,0.08); --accent-border:rgba(45,95,212,0.2);
+  --green:#059669; --green-bg:rgba(5,150,105,0.08); --amber:#d97706; --purple:#7c3aed;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;transition:background .4s var(--ease),color .4s var(--ease)}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.35}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1.25rem,5vw,3.5rem);background:rgba(12,14,18,0.85);backdrop-filter:blur(20px) saturate(1.8);border-bottom:1px solid var(--border);transition:background .4s,border-color .3s}
+[data-theme="light"] nav{background:rgba(250,251,252,0.9)}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-avatar{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:13px;font-weight:700;color:#fff}
+.nav-name{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--text);letter-spacing:-0.01em}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links a{font-size:13px;color:var(--text-2);text-decoration:none;padding:6px 12px;border-radius:var(--radius-sm);transition:all .2s;font-weight:500}
+.nav-links a:hover{color:var(--text);background:var(--bg-3)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.theme-toggle{width:34px;height:34px;border-radius:var(--radius-sm);border:1px solid var(--border-strong);background:var(--bg-3);color:var(--text-2);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.theme-toggle:hover{color:var(--text);background:var(--bg-elevated)}
+.nav-cta{font-family:var(--font-display);font-size:13px;font-weight:600;color:#fff;background:var(--accent);padding:7px 16px;border-radius:var(--radius-sm);text-decoration:none;transition:all .2s;white-space:nowrap}
+.nav-cta:hover{background:var(--accent-2);transform:translateY(-1px)}
+.mobile-nav-btn{display:none;background:var(--bg-3);border:1px solid var(--border-strong);color:var(--text);width:34px;height:34px;border-radius:var(--radius-sm);font-size:17px;cursor:pointer;align-items:center;justify-content:center}
+.mobile-drawer{display:none;position:fixed;top:60px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem;z-index:190;flex-direction:column;gap:4px}
+.mobile-drawer.open{display:flex}
+.mobile-drawer a{font-size:15px;color:var(--text-2);text-decoration:none;padding:10px 12px;border-radius:var(--radius-sm);font-weight:500;transition:all .15s}
+.mobile-drawer a:hover{color:var(--text);background:var(--bg-3)}
+
+/* PAGE */
+.page{max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3.5rem)}
+.section{padding:clamp(4rem,8vw,7rem) 0}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11.5px;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
+.section-label::before{content:'';width:20px;height:1px;background:var(--accent);display:inline-block}
+.section-h2{font-family:var(--font-display);font-size:clamp(1.9rem,3.5vw,3rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;color:var(--text);margin-bottom:clamp(2.5rem,5vw,4rem)}
+.section-h2 span{color:var(--accent)}
+hr.section-rule{border:none;border-top:1px solid var(--border);margin:0}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;padding-bottom:4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px)}
+.hero-orb-1{width:500px;height:500px;background:radial-gradient(circle,rgba(91,138,240,.12),transparent 70%);top:-100px;right:-100px}
+.hero-orb-2{width:350px;height:350px;background:radial-gradient(circle,rgba(167,139,250,.08),transparent 70%);bottom:50px;left:-80px}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black,transparent)}
+.hero-inner{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3.5rem);width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--accent-glow);border:1px solid var(--accent-border);border-radius:100px;padding:5px 14px 5px 8px;font-family:var(--font-mono);font-size:12px;color:var(--accent);letter-spacing:.02em;margin-bottom:2rem;opacity:0;animation:fadeUp .6s var(--ease) .15s forwards}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,.4)}50%{box-shadow:0 0 0 5px rgba(52,211,153,0)}}
+.hero-h1{font-family:var(--font-display);font-size:clamp(2.5rem,5.5vw,4.8rem);font-weight:800;line-height:1.0;letter-spacing:-.04em;color:var(--text);max-width:820px;opacity:0;animation:fadeUp .7s var(--ease) .3s forwards}
+.hero-h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{margin-top:1.5rem;font-size:clamp(1rem,1.8vw,1.12rem);color:var(--text-2);max-width:620px;line-height:1.75;opacity:0;animation:fadeUp .7s var(--ease) .45s forwards}
+.hero-actions{display:flex;gap:12px;margin-top:2.5rem;flex-wrap:wrap;opacity:0;animation:fadeUp .7s var(--ease) .6s forwards}
+.btn-fill{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-family:var(--font-display);font-size:14px;font-weight:600;padding:11px 24px;border-radius:var(--radius-sm);text-decoration:none;transition:all .2s var(--ease);border:none;cursor:pointer;white-space:nowrap}
+.btn-fill:hover{background:var(--accent-2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(91,138,240,.3)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);font-family:var(--font-display);font-size:14px;font-weight:600;padding:10px 24px;border-radius:var(--radius-sm);text-decoration:none;border:1px solid var(--border-strong);transition:all .2s var(--ease);cursor:pointer;white-space:nowrap}
+.btn-ghost:hover{border-color:var(--accent-border);color:var(--accent);background:var(--accent-glow);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:clamp(1.5rem,4vw,3rem);margin-top:4rem;padding-top:2.5rem;border-top:1px solid var(--border);flex-wrap:wrap;opacity:0;animation:fadeUp .7s var(--ease) .75s forwards}
+.hero-stat-num{font-family:var(--font-display);font-size:2rem;font-weight:800;color:var(--text);letter-spacing:-.04em;line-height:1}
+.hero-stat-num span{color:var(--accent)}
+.hero-stat-label{font-size:13px;color:var(--text-2);margin-top:4px}
+
+/* AWARDS STRIP */
+.awards-strip{background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.9rem 0;overflow:hidden;position:relative}
+.awards-strip-inner{display:flex;gap:3rem;white-space:nowrap;animation:marquee 30s linear infinite;width:max-content}
+.awards-strip-inner:hover{animation-play-state:paused}
+.award-item{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:12px;color:var(--text-2);letter-spacing:.04em}
+.award-icon{font-size:14px}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:start}
+.about-text p{color:var(--text-2);line-height:1.8;font-size:15.5px;margin-bottom:1.2rem}
+.about-text p strong{color:var(--text);font-weight:600}
+.about-cards{display:flex;flex-direction:column;gap:10px}
+.about-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.15rem 1.4rem;display:flex;gap:1rem;align-items:flex-start;transition:all .2s}
+.about-card:hover{border-color:var(--accent-border);background:var(--bg-elevated);transform:translateX(4px)}
+.about-card-icon{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--accent-glow);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.about-card-title{font-family:var(--font-display);font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:2px}
+.about-card-desc{font-size:12.5px;color:var(--text-2);line-height:1.5}
+
+/* TIMELINE */
+.timeline{position:relative}
+.timeline::before{content:'';position:absolute;left:18px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),transparent)}
+.timeline-item{display:flex;gap:2rem;padding-bottom:3rem;position:relative}
+.timeline-item:last-child{padding-bottom:0}
+.tl-dot-col{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:36px;padding-top:4px}
+.tl-dot{width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 0 3px var(--accent-border);position:relative;z-index:1}
+.tl-date{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
+.tl-role{font-family:var(--font-display);font-size:1.15rem;font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:2px}
+.tl-org{font-size:13.5px;color:var(--text-2);margin-bottom:1rem;font-weight:500}
+.tl-badge{font-family:var(--font-mono);font-size:10px;background:var(--accent-glow);color:var(--accent);border:1px solid var(--accent-border);padding:3px 10px;border-radius:100px;letter-spacing:.05em;margin-left:10px;vertical-align:middle}
+.tl-bullets{display:flex;flex-direction:column;gap:7px}
+.tl-bullet{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;color:var(--text-2);line-height:1.55}
+.tl-bullet::before{content:'→';color:var(--accent);font-family:var(--font-mono);font-size:11px;flex-shrink:0;margin-top:2px}
+.tl-bullet strong{color:var(--text);font-weight:600}
+
+/* CASE STUDIES */
+.case-grid{display:grid;grid-template-columns:1fr;gap:20px}
+.case-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .3s var(--ease)}
+.case-card:hover{border-color:var(--accent-border);box-shadow:0 16px 48px rgba(0,0,0,.25);transform:translateY(-3px)}
+.case-header{padding:2rem 2.25rem 1.5rem;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start}
+.case-num{font-family:var(--font-mono);font-size:11px;color:var(--text-3);letter-spacing:.1em;margin-bottom:7px}
+.case-title{font-family:var(--font-display);font-size:1.35rem;font-weight:800;color:var(--text);letter-spacing:-.03em;line-height:1.2;margin-bottom:5px}
+.case-subtitle{font-size:13.5px;color:var(--text-2)}
+.case-tag{font-family:var(--font-mono);font-size:11px;padding:5px 12px;border-radius:100px;white-space:nowrap}
+.tag-blue{background:var(--accent-glow);color:var(--accent);border:1px solid var(--accent-border)}
+.tag-green{background:var(--green-bg);color:var(--green);border:1px solid rgba(52,211,153,.2)}
+.tag-amber{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2)}
+.tag-purple{background:rgba(167,139,250,.1);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
+.tag-teal{background:rgba(20,184,166,.1);color:#14b8a6;border:1px solid rgba(20,184,166,.2)}
+.tag-rose{background:rgba(244,63,94,.1);color:#f43f5e;border:1px solid rgba(244,63,94,.2)}
+.case-body{padding:1.75rem 2.25rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.case-section-label{font-family:var(--font-mono);font-size:10.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.case-section-text{font-size:13.5px;color:var(--text-2);line-height:1.75}
+.case-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:1.5rem 2.25rem;border-top:1px solid var(--border);background:var(--bg-2)}
+.case-metric{text-align:center}
+.case-metric-val{font-family:var(--font-display);font-size:1.55rem;font-weight:800;color:var(--accent);letter-spacing:-.04em;line-height:1;display:block;margin-bottom:4px}
+.case-metric-label{font-family:var(--font-mono);font-size:9.5px;color:var(--text-3);text-transform:uppercase;letter-spacing:.07em}
+.case-footer{padding:1.25rem 2.25rem;display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-family:var(--font-mono);font-size:11.5px;color:var(--text-2);background:var(--bg-3);border:1px solid var(--border);padding:4px 12px;border-radius:100px;transition:all .15s}
+.pill:hover{color:var(--accent);border-color:var(--accent-border);background:var(--accent-glow)}
+
+/* AI CARDS */
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.ai-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.75rem;transition:all .25s var(--ease);position:relative;overflow:hidden}
+.ai-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--purple),transparent);opacity:0;transition:opacity .25s}
+.ai-card:hover{border-color:var(--accent-border);transform:translateY(-3px)}
+.ai-card:hover::before{opacity:1}
+.ai-card-icon{font-size:26px;margin-bottom:1rem}
+.ai-card-title{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--text);letter-spacing:-.02em;margin-bottom:6px}
+.ai-card-desc{font-size:13.5px;color:var(--text-2);line-height:1.65;margin-bottom:1rem}
+.ai-stack{display:flex;flex-wrap:wrap;gap:6px}
+.ai-stack-pill{font-family:var(--font-mono);font-size:10.5px;color:var(--accent);background:var(--accent-glow);border:1px solid var(--accent-border);padding:3px 9px;border-radius:100px}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.skill-group{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;transition:all .2s}
+.skill-group:hover{border-color:var(--accent-border)}
+.skill-group-title{font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:.05em;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.skill-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.skill-item{display:flex;justify-content:space-between;align-items:center;font-size:13.5px;color:var(--text-2)}
+.skill-bar-track{width:70px;height:3px;background:var(--border);border-radius:100px;overflow:hidden;flex-shrink:0}
+.skill-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--purple));border-radius:100px;width:0;transition:width 1.2s var(--ease)}
+
+/* CONTACT */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:start}
+.contact-headline{font-family:var(--font-display);font-size:clamp(2rem,4vw,3.2rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;color:var(--text);margin-bottom:1.25rem}
+.contact-headline em{font-style:normal;color:var(--accent)}
+.contact-desc{font-size:15px;color:var(--text-2);line-height:1.75;margin-bottom:2rem}
+.contact-target{display:inline-flex;align-items:center;gap:8px;background:var(--green-bg);border:1px solid rgba(52,211,153,.2);border-radius:100px;padding:6px 14px;font-family:var(--font-mono);font-size:12px;color:var(--green);margin-bottom:2rem}
+.contact-links{display:flex;flex-direction:column;gap:12px}
+.contact-link{display:flex;align-items:center;gap:14px;padding:1.1rem 1.4rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);text-decoration:none;transition:all .2s var(--ease)}
+.contact-link:hover{border-color:var(--accent-border);background:var(--accent-glow);transform:translateX(5px)}
+.contact-link-icon{width:42px;height:42px;border-radius:var(--radius-sm);background:var(--accent-glow);border:1px solid var(--accent-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:14px;font-weight:500;color:var(--accent);flex-shrink:0}
+.contact-link-body{flex:1}
+.contact-link-label{font-family:var(--font-mono);font-size:10px;color:var(--text-3);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:2px}
+.contact-link-value{font-size:14.5px;color:var(--text);font-weight:500}
+.contact-link-arrow{color:var(--text-3);font-size:18px;transition:all .2s}
+.contact-link:hover .contact-link-arrow{color:var(--accent);transform:translateX(3px)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-copy{font-family:var(--font-mono);font-size:12px;color:var(--text-3)}
+.footer-avail{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;color:var(--text-2)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr}
+  .case-body{grid-template-columns:1fr;gap:1.25rem}
+}
+@media(max-width:700px){
+  .nav-links{display:none}
+  .mobile-nav-btn{display:flex}
+  .case-header{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .case-body,.case-header,.case-footer{padding-left:1.25rem;padding-right:1.25rem}
+  .case-metrics{padding-left:1.25rem;padding-right:1.25rem}
+  .case-metric-val{font-size:1.2rem}
 }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  transition: background 0.4s var(--ease), color 0.4s var(--ease);
-}
-
-/* ── NOISE TEXTURE ── */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.4;
-}
-
-/* ── NAV ── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 200;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 clamp(1.25rem, 5vw, 3.5rem);
-  background: rgba(12,14,18,0.8);
-  backdrop-filter: blur(20px) saturate(1.8);
-  border-bottom: 1px solid var(--border);
-  transition: background 0.4s;
-}
-
-[data-theme="light"] nav { background: rgba(250,251,252,0.85); }
-
-.nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.nav-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--accent), #7c3aed);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
-}
-
-.nav-name {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  list-style: none;
-}
-
-.nav-links a {
-  font-size: 13.5px;
-  color: var(--text-2);
-  text-decoration: none;
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  transition: all 0.2s;
-  font-weight: 500;
-}
-
-.nav-links a:hover { color: var(--text); background: var(--bg-3); }
-
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.theme-toggle {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-strong);
-  background: var(--bg-3);
-  color: var(--text-2);
-  cursor: pointer;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
-
-.theme-toggle:hover { color: var(--text); background: var(--bg-elevated); }
-
-.nav-cta {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 600;
-  color: #fff;
-  background: var(--accent);
-  padding: 8px 18px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-
-.nav-cta:hover { background: var(--accent-2); transform: translateY(-1px); }
-
-.mobile-nav-btn {
-  display: none;
-  background: var(--bg-3);
-  border: 1px solid var(--border-strong);
-  color: var(--text);
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  font-size: 18px;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ── PAGE WRAPPER ── */
-.page { max-width: 1120px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 3.5rem); }
-
-/* ── HERO ── */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding-top: 80px;
-  padding-bottom: 4rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.hero-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-}
-
-.hero-orb-1 {
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(91,138,240,0.12), transparent 70%);
-  top: -100px; right: -100px;
-}
-
-.hero-orb-2 {
-  width: 350px; height: 350px;
-  background: radial-gradient(circle, rgba(124,58,237,0.08), transparent 70%);
-  bottom: 50px; left: -80px;
-}
-
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 clamp(1.25rem, 5vw, 3.5rem);
-  width: 100%;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent-glow);
-  border: 1px solid var(--accent-border);
-  border-radius: 100px;
-  padding: 5px 14px 5px 8px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: 0.02em;
-  margin-bottom: 2rem;
-  opacity: 0;
-  animation: fadeUp 0.6s var(--ease) 0.15s forwards;
-}
-
-.hero-badge-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-@keyframes pulse-dot {
-  0%,100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.4); }
-  50% { box-shadow: 0 0 0 5px rgba(52,211,153,0); }
-}
-
-.hero-h1 {
-  font-family: var(--font-display);
-  font-size: clamp(2.6rem, 5.5vw, 5rem);
-  font-weight: 800;
-  line-height: 1.0;
-  letter-spacing: -0.04em;
-  color: var(--text);
-  max-width: 820px;
-  opacity: 0;
-  animation: fadeUp 0.7s var(--ease) 0.3s forwards;
-}
-
-.hero-h1 em {
-  font-style: normal;
-  background: linear-gradient(135deg, var(--accent), #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-sub {
-  margin-top: 1.5rem;
-  font-size: clamp(1rem, 1.8vw, 1.15rem);
-  color: var(--text-2);
-  max-width: 620px;
-  line-height: 1.75;
-  font-weight: 400;
-  opacity: 0;
-  animation: fadeUp 0.7s var(--ease) 0.45s forwards;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 12px;
-  margin-top: 2.5rem;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.7s var(--ease) 0.6s forwards;
-}
-
-.btn-fill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent);
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  padding: 11px 24px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  transition: all 0.2s var(--ease);
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.btn-fill:hover { background: var(--accent-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(91,138,240,0.3); }
-
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: var(--text);
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  padding: 10px 24px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  border: 1px solid var(--border-strong);
-  transition: all 0.2s var(--ease);
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.btn-ghost:hover { border-color: var(--accent-border); color: var(--accent); background: var(--accent-glow); transform: translateY(-2px); }
-
-.hero-stats {
-  display: flex;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  margin-top: 4rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid var(--border);
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 0.7s var(--ease) 0.75s forwards;
-}
-
-.hero-stat-num {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-
-.hero-stat-num span { color: var(--accent); }
-.hero-stat-label {
-  font-size: 13px;
-  color: var(--text-2);
-  margin-top: 4px;
-}
-
-/* ── SECTION ── */
-.section {
-  padding: clamp(4rem, 8vw, 7rem) 0;
-}
-
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: var(--accent);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-
-.section-label::before {
-  content: '';
-  width: 20px;
-  height: 1px;
-  background: var(--accent);
-  display: inline-block;
-}
-
-.section-h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.9rem, 3.5vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  color: var(--text);
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-
-.section-h2 span { color: var(--accent); }
-
-hr.section-rule {
-  border: none;
-  border-top: 1px solid var(--border);
-  margin: 0;
-}
-
-/* ── ABOUT ── */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: start;
-}
-
-.about-text p {
-  color: var(--text-2);
-  line-height: 1.8;
-  font-size: 15.5px;
-  margin-bottom: 1.2rem;
-  font-weight: 400;
-}
-
-.about-text p strong { color: var(--text); font-weight: 600; }
-
-.about-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.about-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.25rem 1.5rem;
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  transition: all 0.2s;
-}
-
-.about-card:hover { border-color: var(--accent-border); background: var(--bg-elevated); transform: translateX(4px); }
-
-.about-card-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-sm);
-  background: var(--accent-glow);
-  border: 1px solid var(--accent-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 17px;
-  flex-shrink: 0;
-}
-
-.about-card-title {
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 3px;
-}
-
-.about-card-desc {
-  font-size: 13px;
-  color: var(--text-2);
-  line-height: 1.5;
-}
-
-/* ── EXPERIENCE / TIMELINE ── */
-.timeline { position: relative; }
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 18px;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-}
-
-.timeline-item {
-  display: flex;
-  gap: 2rem;
-  padding-bottom: 3rem;
-  position: relative;
-}
-
-.timeline-item:last-child { padding-bottom: 0; }
-
-.timeline-dot-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
-  width: 36px;
-  padding-top: 3px;
-}
-
-.tl-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--bg);
-  box-shadow: 0 0 0 3px var(--accent-border);
-  position: relative;
-  z-index: 1;
-}
-
-.timeline-content {
-  flex: 1;
-  padding-bottom: 1.5rem;
-}
-
-.tl-date {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.tl-company {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 4px;
-}
-
-.tl-role {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.02em;
-}
-
-.tl-org {
-  font-size: 14px;
-  color: var(--text-2);
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-
-.tl-badge {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  background: var(--accent-glow);
-  color: var(--accent);
-  border: 1px solid var(--accent-border);
-  padding: 3px 10px;
-  border-radius: 100px;
-  letter-spacing: 0.05em;
-}
-
-.tl-responsibilities {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 1rem;
-}
-
-.tl-item {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-  font-size: 13.5px;
-  color: var(--text-2);
-  background: var(--bg-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 10px 12px;
-  line-height: 1.5;
-}
-
-.tl-item::before {
-  content: '→';
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-/* ── CASE STUDIES ── */
-.case-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-
-.case-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: all 0.3s var(--ease);
-}
-
-.case-card:hover { border-color: var(--accent-border); box-shadow: 0 16px 48px rgba(0,0,0,0.25); transform: translateY(-3px); }
-
-.case-header {
-  padding: 2rem 2.25rem 1.5rem;
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1rem;
-  align-items: start;
-}
-
-.case-num {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text-3);
-  letter-spacing: 0.1em;
-  margin-bottom: 8px;
-}
-
-.case-title {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.03em;
-  line-height: 1.2;
-  margin-bottom: 6px;
-}
-
-.case-subtitle {
-  font-size: 14px;
-  color: var(--text-2);
-  font-weight: 400;
-}
-
-.case-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 5px 12px;
-  border-radius: 100px;
-  white-space: nowrap;
-}
-
-.tag-blue { background: var(--accent-glow); color: var(--accent); border: 1px solid var(--accent-border); }
-.tag-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(52,211,153,0.2); }
-.tag-amber { background: rgba(251,191,36,0.1); color: var(--amber); border: 1px solid rgba(251,191,36,0.2); }
-
-.case-body {
-  padding: 1.75rem 2.25rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.case-section-label {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 8px;
-}
-
-.case-section-text {
-  font-size: 14px;
-  color: var(--text-2);
-  line-height: 1.7;
-}
-
-.case-metrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  padding: 1.5rem 2.25rem;
-  border-top: 1px solid var(--border);
-  background: var(--bg-2);
-}
-
-.case-metric {
-  text-align: center;
-}
-
-.case-metric-val {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--accent);
-  letter-spacing: -0.04em;
-  line-height: 1;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.case-metric-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-}
-
-.case-footer {
-  padding: 1.25rem 2.25rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.pill {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: var(--text-2);
-  background: var(--bg-3);
-  border: 1px solid var(--border);
-  padding: 4px 12px;
-  border-radius: 100px;
-  transition: all 0.15s;
-}
-
-.pill:hover { color: var(--accent); border-color: var(--accent-border); background: var(--accent-glow); }
-
-/* ── AI / AUTOMATION ── */
-.ai-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-}
-
-.ai-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.75rem;
-  transition: all 0.25s var(--ease);
-  position: relative;
-  overflow: hidden;
-}
-
-.ai-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), #7c3aed, transparent);
-  opacity: 0;
-  transition: opacity 0.25s;
-}
-
-.ai-card:hover { border-color: var(--accent-border); transform: translateY(-3px); }
-.ai-card:hover::before { opacity: 1; }
-
-.ai-card-icon {
-  font-size: 28px;
-  margin-bottom: 1rem;
-}
-
-.ai-card-title {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -0.02em;
-  margin-bottom: 6px;
-}
-
-.ai-card-desc {
-  font-size: 13.5px;
-  color: var(--text-2);
-  line-height: 1.65;
-  margin-bottom: 1rem;
-}
-
-.ai-stack {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.ai-stack-pill {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--accent);
-  background: var(--accent-glow);
-  border: 1px solid var(--accent-border);
-  padding: 3px 9px;
-  border-radius: 100px;
-}
-
-/* ── SKILLS ── */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 16px;
-}
-
-.skill-group {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.5rem;
-  transition: all 0.2s;
-}
-
-.skill-group:hover { border-color: var(--accent-border); }
-
-.skill-group-title {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.skill-group-icon { font-size: 16px; }
-
-.skill-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.skill-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13.5px;
-  color: var(--text-2);
-}
-
-.skill-bar-track {
-  width: 70px;
-  height: 3px;
-  background: var(--border);
-  border-radius: 100px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.skill-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), #a78bfa);
-  border-radius: 100px;
-  width: 0;
-  transition: width 1.2s var(--ease);
-}
-
-/* ── CONTACT ── */
-.contact-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 5vw, 5rem);
-  align-items: start;
-}
-
-.contact-headline {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  color: var(--text);
-  margin-bottom: 1.25rem;
-}
-
-.contact-headline em {
-  font-style: normal;
-  color: var(--accent);
-}
-
-.contact-desc {
-  font-size: 15px;
-  color: var(--text-2);
-  line-height: 1.75;
-  margin-bottom: 2rem;
-}
-
-.contact-target {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--green-bg);
-  border: 1px solid rgba(52,211,153,0.2);
-  border-radius: 100px;
-  padding: 6px 14px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--green);
-  margin-bottom: 2rem;
-}
-
-.contact-links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.contact-link {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 1.1rem 1.4rem;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  text-decoration: none;
-  transition: all 0.2s var(--ease);
-}
-
-.contact-link:hover { border-color: var(--accent-border); background: var(--accent-glow); transform: translateX(5px); }
-
-.contact-link-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: var(--radius-sm);
-  background: var(--accent-glow);
-  border: 1px solid var(--accent-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--accent);
-  flex-shrink: 0;
-}
-
-.contact-link-body { flex: 1; }
-
-.contact-link-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  display: block;
-  margin-bottom: 2px;
-}
-
-.contact-link-value {
-  font-size: 14.5px;
-  color: var(--text);
-  font-weight: 500;
-}
-
-.contact-link-arrow {
-  color: var(--text-3);
-  font-size: 18px;
-  transition: all 0.2s;
-}
-
-.contact-link:hover .contact-link-arrow { color: var(--accent); transform: translateX(3px); }
-
-/* ── FOOTER ── */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 2rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-copy {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-3);
-}
-
-.footer-avail {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-2);
-}
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
-}
-
-.reveal.in { opacity: 1; transform: translateY(0); }
-
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .contact-wrap { grid-template-columns: 1fr; }
-  .case-body { grid-template-columns: 1fr; gap: 1.25rem; }
-  .tl-responsibilities { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 700px) {
-  .nav-links { display: none; }
-  .mobile-nav-btn { display: flex; }
-  .case-metrics { grid-template-columns: repeat(3, 1fr); }
-  .case-header { grid-template-columns: 1fr; }
-  .hero-stats { gap: 1.5rem; }
-}
-
-@media (max-width: 480px) {
-  .case-body { padding: 1.25rem 1.25rem; }
-  .case-header { padding: 1.5rem 1.25rem 1rem; }
-  .case-metrics { padding: 1rem 1.25rem; }
-  .case-footer { padding: 1rem 1.25rem; }
-}
-
-/* Mobile drawer */
-.mobile-drawer {
-  display: none;
-  position: fixed;
-  top: 60px; left: 0; right: 0;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  padding: 1.25rem;
-  z-index: 190;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.mobile-drawer.open { display: flex; }
-.mobile-drawer a {
-  font-size: 15px;
-  color: var(--text-2);
-  text-decoration: none;
-  padding: 10px 12px;
-  border-radius: var(--radius-sm);
-  font-weight: 500;
-  transition: all 0.15s;
-}
-.mobile-drawer a:hover { color: var(--text); background: var(--bg-3); }
 </style>
 </head>
 <body>
@@ -1098,13 +231,11 @@ footer {
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" title="Toggle theme">🌙</button>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
     <a href="#contact" class="nav-cta">Hire Me</a>
-    <button class="mobile-nav-btn" onclick="toggleDrawer()" id="mobileBtn">☰</button>
+    <button class="mobile-nav-btn" onclick="toggleDrawer()">☰</button>
   </div>
 </nav>
-
-<!-- MOBILE DRAWER -->
 <div class="mobile-drawer" id="drawer">
   <a href="#about" onclick="closeDrawer()">About</a>
   <a href="#experience" onclick="closeDrawer()">Experience</a>
@@ -1114,7 +245,7 @@ footer {
   <a href="#contact" onclick="closeDrawer()">Contact</a>
 </div>
 
-<!-- ══ HERO ══ -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
     <div class="hero-grid"></div>
@@ -1124,82 +255,103 @@ footer {
   <div class="hero-inner">
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
-      Open to PM roles — Singapore &amp; Europe
+      Open to PM roles — Singapore &amp; Europe · German B2
     </div>
-    <h1 class="hero-h1">Product Manager Building <em>Scalable Telecom</em> &amp; AI-Driven Digital Platforms</h1>
-    <p class="hero-sub">I own and deliver revenue-critical systems that process millions of transactions daily — spanning billing, mediation, loyalty, and enterprise infrastructure — at one of Bangladesh's largest telecom operators.</p>
+    <h1 class="hero-h1">Product Manager Building<br><em>Scalable Telecom &amp; AI‑Driven</em><br>Digital Platforms</h1>
+    <p class="hero-sub">I safeguard <strong style="color:var(--text)">$600M+ in annual revenue</strong> by owning mission-critical systems that process 30M+ records daily — spanning CDR mediation, billing, loyalty, asset management, and enterprise digital infrastructure at Robi Axiata, Bangladesh's 2nd-largest mobile operator.</p>
     <div class="hero-actions">
       <a href="#case-studies" class="btn-fill">View Case Studies →</a>
-      <a href="#contact" class="btn-ghost">Download Resume</a>
+      <a href="mailto:hasanrokonimaruf@gmail.com" class="btn-ghost">Download Resume</a>
       <a href="#contact" class="btn-ghost">Contact Me</a>
     </div>
     <div class="hero-stats">
       <div>
-        <div class="hero-stat-num">4<span>+</span></div>
-        <div class="hero-stat-label">Years in Telecom PM</div>
+        <div class="hero-stat-num">5<span>+</span></div>
+        <div class="hero-stat-label">Years in Product &amp; Ops</div>
       </div>
       <div>
-        <div class="hero-stat-num">10<span>M+</span></div>
-        <div class="hero-stat-label">Users on Managed Systems</div>
+        <div class="hero-stat-num">30<span>M+</span></div>
+        <div class="hero-stat-label">CDR Records/Day</div>
       </div>
       <div>
-        <div class="hero-stat-num">120<span>+</span></div>
-        <div class="hero-stat-label">System Integrations</div>
+        <div class="hero-stat-num">$600<span>M+</span></div>
+        <div class="hero-stat-label">Annual Revenue Safeguarded</div>
       </div>
       <div>
-        <div class="hero-stat-num">5</div>
-        <div class="hero-stat-label">Mission-Critical Products</div>
+        <div class="hero-stat-num">99.99<span>%</span></div>
+        <div class="hero-stat-label">Data Integrity SLA</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- AWARDS STRIP -->
+<div class="awards-strip">
+  <div class="awards-strip-inner">
+    <div class="award-item"><span class="award-icon">🏆</span> Robi Rising Star Award — H1, 2023</div>
+    <div class="award-item"><span class="award-icon">⭐</span> Robi Star Performer Award — Q4, 2024</div>
+    <div class="award-item"><span class="award-icon">🥇</span> Winner — PTAK Prize by ISCEA (International Supply Chain Education Alliance)</div>
+    <div class="award-item"><span class="award-icon">🏅</span> Champion — Youth Opportunities Marketing Competition</div>
+    <div class="award-item"><span class="award-icon">🎓</span> BBA in Technology Management — Islamic University of Technology</div>
+    <div class="award-item"><span class="award-icon">📜</span> Certified Supply Chain Analyst (CSCA)</div>
+    <div class="award-item"><span class="award-icon">🇩🇪</span> German Language — B2 Proficiency</div>
+    <!-- duplicate for seamless loop -->
+    <div class="award-item"><span class="award-icon">🏆</span> Robi Rising Star Award — H1, 2023</div>
+    <div class="award-item"><span class="award-icon">⭐</span> Robi Star Performer Award — Q4, 2024</div>
+    <div class="award-item"><span class="award-icon">🥇</span> Winner — PTAK Prize by ISCEA (International Supply Chain Education Alliance)</div>
+    <div class="award-item"><span class="award-icon">🏅</span> Champion — Youth Opportunities Marketing Competition</div>
+    <div class="award-item"><span class="award-icon">🎓</span> BBA in Technology Management — Islamic University of Technology</div>
+    <div class="award-item"><span class="award-icon">📜</span> Certified Supply Chain Analyst (CSCA)</div>
+    <div class="award-item"><span class="award-icon">🇩🇪</span> German Language — B2 Proficiency</div>
+  </div>
+</div>
+
 <hr class="section-rule">
 
-<!-- ══ ABOUT ══ -->
+<!-- ABOUT -->
 <section id="about" class="section">
   <div class="page">
     <div class="section-label">Who I am</div>
     <div class="about-grid">
       <div class="about-text reveal">
-        <p>I am a <strong>Digital Product Manager at Robi Axiata Limited</strong>, one of Bangladesh's leading telecom operators. My work sits at the intersection of technology, business operations, and customer experience — where system reliability is measured in revenue, and downtime is never an option.</p>
-        <p>I manage a portfolio of <strong>five mission-critical platforms</strong> including telecom mediation, billing, loyalty, digital asset management, and enterprise eSign systems. My work requires deep collaboration with engineering, finance, commercial, and compliance teams — and the discipline to prioritize ruthlessly in high-stakes environments.</p>
-        <p>I'm now focused on transitioning into <strong>global Product Management roles</strong> in Singapore, the Netherlands, Germany, or the Nordics, where I can apply my systems-thinking and platform ownership experience to scalable SaaS, fintech, or infrastructure products.</p>
-        <p><strong>I bring something rare: the combination of technical fluency, business understanding, and the ability to operate in environments where the cost of failure is real.</strong></p>
+        <p>I'm a <strong>Product Manager and digital systems specialist</strong> with 5+ years of experience building and operating high-scale, transaction-heavy platforms across telecom, fintech, and digital marketplaces. I currently serve as <strong>Senior Associate at Robi Axiata PLC.</strong>, where I own product vision for the systems that protect the company's core revenue streams.</p>
+        <p>My work sits at the intersection of engineering, business, and operations — where a missed anomaly in a mediation system isn't a bug report, it's a revenue loss event. I've led product and system work across <strong>CDR mediation (30M+ records/day), billing, asset management, AI-powered contact centre solutions, network reconciliation, and enterprise digital transformation</strong>.</p>
+        <p>Before Robi, I built product intuition at <strong>ShopUp</strong> (B2B fintech/marketplace) where I reduced reconciliation errors by 48% and cut order processing time by 55%. At <strong>foodpanda</strong>, I used data and A/B testing to drive a 15% increase in user engagement.</p>
+        <p>I'm now targeting <strong>global PM roles in Singapore, Netherlands, Germany, Finland, Denmark, Estonia, Malaysia, or Thailand</strong> — markets where my systems background, data fluency, and cross-functional track record will translate directly into platform product impact. <strong>I speak German (B2)</strong> and am ready to relocate.</p>
       </div>
-      <div class="about-cards reveal" style="transition-delay:0.1s">
+      <div class="about-cards reveal" style="transition-delay:.1s">
+        <div class="about-card">
+          <div class="about-card-icon">💰</div>
+          <div>
+            <div class="about-card-title">Revenue-Critical Systems Owner</div>
+            <div class="about-card-desc">$600M+ in annual revenue flows through systems I manage. Zero tolerance for downtime or data loss.</div>
+          </div>
+        </div>
         <div class="about-card">
           <div class="about-card-icon">🏗</div>
           <div>
             <div class="about-card-title">Systems Thinker</div>
-            <div class="about-card-desc">I map complex integrations, data flows, and dependencies before writing a single requirement.</div>
+            <div class="about-card-desc">I map integrations, data flows, and failure modes before writing a single requirement.</div>
           </div>
         </div>
         <div class="about-card">
-          <div class="about-card-icon">💰</div>
+          <div class="about-card-icon">📊</div>
           <div>
-            <div class="about-card-title">Revenue-Focused</div>
-            <div class="about-card-desc">Every product I own has a direct line to revenue protection, growth, or operational savings.</div>
-          </div>
-        </div>
-        <div class="about-card">
-          <div class="about-card-icon">🌐</div>
-          <div>
-            <div class="about-card-title">Cross-Functional Leader</div>
-            <div class="about-card-desc">I align engineering, finance, commercial, and vendor teams toward shared outcomes.</div>
+            <div class="about-card-title">Data-Driven Decision Maker</div>
+            <div class="about-card-desc">SQL, cohort analysis, A/B testing, and financial metrics are native to how I prioritise and validate.</div>
           </div>
         </div>
         <div class="about-card">
           <div class="about-card-icon">🤖</div>
           <div>
-            <div class="about-card-title">AI-Curious Builder</div>
-            <div class="about-card-desc">I actively build AI automation workflows to enhance personal and team productivity.</div>
+            <div class="about-card-title">AI-Enabled Builder</div>
+            <div class="about-card-desc">From AI chatbots in production to personal automation agents — I build, not just manage.</div>
           </div>
         </div>
         <div class="about-card">
-          <div class="about-card-icon">📍</div>
+          <div class="about-card-icon">🇩🇪</div>
           <div>
-            <div class="about-card-title">Global Ambition</div>
+            <div class="about-card-title">German B2 · Global Ready</div>
             <div class="about-card-desc">Targeting Singapore, Netherlands, Germany, Finland, Denmark, Estonia, Malaysia &amp; Thailand.</div>
           </div>
         </div>
@@ -1210,172 +362,308 @@ footer {
 
 <hr class="section-rule">
 
-<!-- ══ EXPERIENCE ══ -->
+<!-- EXPERIENCE -->
 <section id="experience" class="section">
   <div class="page">
     <div class="section-label">Track Record</div>
     <h2 class="section-h2">Where I've <span>Delivered</span></h2>
-    <div class="timeline reveal">
-      <div class="timeline-item">
-        <div class="timeline-dot-col"><div class="tl-dot"></div></div>
-        <div class="timeline-content">
-          <div class="tl-date">2020 — Present · Dhaka, Bangladesh</div>
-          <div class="tl-company">
-            <div class="tl-role">Digital Product Manager</div>
-            <span class="tl-badge">Current Role</span>
-          </div>
-          <div class="tl-org">Robi Axiata Limited — Bangladesh's 2nd largest mobile operator · 5.4 Crore+ subscribers</div>
-          <div class="tl-responsibilities">
-            <div class="tl-item">Owned end-to-end product strategy for telecom mediation systems processing millions of daily CDRs (Call Detail Records) and data transactions</div>
-            <div class="tl-item">Managed prepaid and postpaid billing platforms serving the full subscriber base, with zero-tolerance SLAs for revenue assurance</div>
-            <div class="tl-item">Drove product decisions for interconnect billing with domestic and international carrier partners, reducing settlement disputes</div>
-            <div class="tl-item">Owned the loyalty management platform, defining feature prioritisation and integration with BSS systems to improve subscriber retention</div>
-            <div class="tl-item">Led Digital Asset Management (SAP-based) product, centralising enterprise infrastructure asset lifecycle tracking across business units</div>
-            <div class="tl-item">Championed the enterprise eSign platform, eliminating paper-based workflows for contract execution across commercial and legal teams</div>
-            <div class="tl-item">Collaborated with engineering, finance, IT, and commercial stakeholders to define product requirements, acceptance criteria, and go-live plans</div>
-            <div class="tl-item">Monitored system KPIs, triaged production incidents, and coordinated vendor teams during critical outages and system upgrades</div>
+    <div class="timeline">
+
+      <!-- Robi - Current -->
+      <div class="timeline-item reveal">
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div>
+          <div class="tl-date">Oct 2024 — Present</div>
+          <div class="tl-role">Senior Associate, Integrated Revenue &amp; Customer Management Operations <span class="tl-badge">Current</span></div>
+          <div class="tl-org">Robi Axiata PLC. · Dhaka, Bangladesh</div>
+          <div class="tl-bullets">
+            <div class="tl-bullet">Safeguard <strong>$600M+ in annual revenue</strong> by managing CDR mediation systems processing <strong>30M+ records/day</strong> at 99.99% data integrity and system uptime</div>
+            <div class="tl-bullet">Act as product owner for multiple ICT services — defining product vision, service specifications, SLAs, enhancements, and service introduction roadmaps for enterprise and B2B customers</div>
+            <div class="tl-bullet">Designed and implemented proactive monitoring frameworks to identify <strong>transaction spikes and revenue leakage</strong>, significantly reducing time-to-detection (TTD) for systemic risks</div>
           </div>
         </div>
       </div>
+
+      <!-- Robi - Enterprise Specialist -->
+      <div class="timeline-item reveal" style="transition-delay:.1s">
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div>
+          <div class="tl-date">Jan 2023 — Sep 2024</div>
+          <div class="tl-role">Enterprise System Planning and Management Specialist</div>
+          <div class="tl-org">Robi Axiata PLC. · Dhaka, Bangladesh</div>
+          <div class="tl-bullets">
+            <div class="tl-bullet">Led planning and rollout of an <strong>enterprise-grade asset management platform</strong>, improving asset visibility by <strong>80%</strong> and operational efficiency by <strong>85%</strong></div>
+            <div class="tl-bullet">Led implementation of <strong>AI-powered chatbots, voice bots, and agent-assist solutions</strong>, increasing self-service adoption by <strong>35%</strong> and reducing average handling time by <strong>40%</strong></div>
+            <div class="tl-bullet">Led the network asset discovery &amp; reconciliation system enhancement — integrating Ericsson 2G BTS nodes, Transmission assets, and NCE IP elements into live reconciliation infrastructure</div>
+            <div class="tl-bullet">Developed complex SQL queries for financial metrics (ROI, revenue growth, depreciation) and time-series analysis — enabling data-driven decisions that improved asset utilisation by <strong>20%</strong> and profitability by <strong>15%</strong></div>
+            <div class="tl-bullet">Led the Call Centre Technology (CCT) migration — coordinating infrastructure cutover, IP transitions, VRRP configuration, and post-migration validation across all modules</div>
+            <div class="tl-bullet">Implemented Python and Shell automation scripts, achieving a <strong>30% improvement in operational efficiency</strong> and saving 10+ hours per week</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ShopUp PM -->
+      <div class="timeline-item reveal" style="transition-delay:.2s">
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div>
+          <div class="tl-date">Oct 2022 — Jan 2023</div>
+          <div class="tl-role">Junior Product Manager</div>
+          <div class="tl-org">ShopUp (Shopfront Limited) · Dhaka, Bangladesh</div>
+          <div class="tl-bullets">
+            <div class="tl-bullet">Built and launched cash flow tracking and reconciliation features, reducing errors by <strong>48%</strong> and improving forecasting accuracy by <strong>20%</strong></div>
+            <div class="tl-bullet">Built a digital panel for real-time order monitoring and management, reducing processing time by <strong>55%</strong> and improving data visibility across operations teams</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ShopUp Program Manager -->
+      <div class="timeline-item reveal" style="transition-delay:.25s">
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div>
+          <div class="tl-date">Mar 2022 — Sep 2022</div>
+          <div class="tl-role">Junior Program Manager</div>
+          <div class="tl-org">ShopUp (Shopfront Limited) · Dhaka, Bangladesh</div>
+          <div class="tl-bullets">
+            <div class="tl-bullet">Led development of integrated solutions for sales, logistics, and cash management, increasing operational efficiency by <strong>35%</strong></div>
+            <div class="tl-bullet">Conducted <strong>30+ FGDs with 150+ stakeholders</strong> to validate product requirements — achieving a 25% increase in customer satisfaction</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- foodpanda -->
+      <div class="timeline-item reveal" style="transition-delay:.3s">
+        <div class="tl-dot-col"><div class="tl-dot"></div></div>
+        <div>
+          <div class="tl-date">Dec 2020 — Sep 2021</div>
+          <div class="tl-role">Content &amp; Product Optimization Analyst</div>
+          <div class="tl-org">foodpanda (Delivery Hero) · Dhaka, Bangladesh</div>
+          <div class="tl-bullets">
+            <div class="tl-bullet">Used data analysis to optimise menu organisation in the foodpanda app — driving a <strong>15% increase in user engagement</strong> and <strong>20% increase in order completion rates</strong></div>
+            <div class="tl-bullet">Performed A/B testing on content layouts and designs, leveraging user feedback to enhance overall UX</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <hr class="section-rule">
 
-<!-- ══ CASE STUDIES ══ -->
+<!-- CASE STUDIES -->
 <section id="case-studies" class="section">
   <div class="page">
     <div class="section-label">Deep Work</div>
     <h2 class="section-h2">Selected <span>Case Studies</span></h2>
     <div class="case-grid">
 
-      <!-- Case 1: Billing & Mediation -->
+      <!-- CS 1: CDR Mediation & Revenue -->
       <div class="case-card reveal">
         <div class="case-header">
           <div>
-            <div class="case-num">01 — Revenue Systems</div>
-            <div class="case-title">Telecom Billing & Mediation Revenue Assurance Platform</div>
-            <div class="case-subtitle">Reducing revenue leakage in a multi-system BSS environment at national scale</div>
+            <div class="case-num">01 — Revenue Assurance · Robi Axiata</div>
+            <div class="case-title">CDR Mediation &amp; Revenue Assurance Platform</div>
+            <div class="case-subtitle">Protecting $600M+ in annual revenue through proactive monitoring and anomaly detection on 30M+ daily records</div>
           </div>
           <span class="case-tag tag-blue">Billing · Mediation</span>
         </div>
         <div class="case-body">
           <div>
             <div class="case-section-label">The Problem</div>
-            <div class="case-section-text">Robi's billing and mediation stack was a complex, multi-vendor environment handling prepaid, postpaid, interconnect, and roaming transactions simultaneously. With millions of CDRs (Call Detail Records) processed daily across multiple mediation nodes, any gap in monitoring or workflow breakdown created silent revenue leakage that was difficult to trace. There was no unified view across billing domains, and incident response relied heavily on reactive escalations rather than proactive detection.</div>
+            <div class="case-section-text">Robi's billing and mediation stack processes tens of millions of CDRs (Call Detail Records) daily across prepaid, postpaid, roaming, and interconnect domains. The environment was reactive: revenue leakage from mediation gaps, duplicate records, or processing failures was only detected after it had already occurred — sometimes hours later — making root cause analysis slow and financial reconciliation costly. There was no unified monitoring layer spanning all transaction types.</div>
           </div>
           <div>
             <div class="case-section-label">What I Did As PM</div>
-            <div class="case-section-text">I owned the end-to-end product strategy for the mediation and billing systems. I defined and prioritised improvements to system monitoring workflows, partnered with the engineering team to build anomaly detection checkpoints at key mediation stages, and worked with finance to align revenue assurance KPIs into the product roadmap. I drove structured incident review cycles that converted reactive fire-fighting into systematic process improvements — ensuring vendor accountability and reducing the mean time to resolution (MTTR).</div>
+            <div class="case-section-text">I led product vision for the mediation and billing systems, defining a proactive monitoring framework that placed anomaly-detection checkpoints at critical mediation pipeline stages. I worked with engineering to formalise transaction spike alerting, partnered with finance to align revenue assurance KPIs to the product roadmap, and drove structured incident review cycles. I also defined SLA requirements, owned escalation workflows with vendors, and reduced the mean time-to-detection (TTD) for systemic risks through automated threshold-based alerting.</div>
           </div>
         </div>
         <div class="case-metrics">
-          <div class="case-metric">
-            <span class="case-metric-val">10M+</span>
-            <span class="case-metric-label">Subscribers served</span>
-          </div>
-          <div class="case-metric">
-            <span class="case-metric-val">~40%</span>
-            <span class="case-metric-label">Faster incident MTTR</span>
-          </div>
-          <div class="case-metric">
-            <span class="case-metric-val">Zero</span>
-            <span class="case-metric-label">Tolerance SLA on billing</span>
-          </div>
+          <div class="case-metric"><span class="case-metric-val">30M+</span><span class="case-metric-label">CDRs / Day</span></div>
+          <div class="case-metric"><span class="case-metric-val">99.99%</span><span class="case-metric-label">Data Integrity SLA</span></div>
+          <div class="case-metric"><span class="case-metric-val">$600M+</span><span class="case-metric-label">Revenue Protected</span></div>
         </div>
         <div class="case-footer">
-          <span class="pill">BSS Mediation</span>
-          <span class="pill">Revenue Assurance</span>
-          <span class="pill">Billing Systems</span>
-          <span class="pill">Vendor Management</span>
-          <span class="pill">KPI Monitoring</span>
+          <span class="pill">CDR Mediation</span><span class="pill">Revenue Assurance</span><span class="pill">Anomaly Detection</span><span class="pill">SLA Management</span><span class="pill">Vendor Coordination</span>
         </div>
       </div>
 
-      <!-- Case 2: DAM -->
-      <div class="case-card reveal" style="transition-delay:0.08s">
+      <!-- CS 2: AI Governance -->
+      <div class="case-card reveal" style="transition-delay:.08s">
         <div class="case-header">
           <div>
-            <div class="case-num">02 — Enterprise Infrastructure</div>
-            <div class="case-title">Digital Asset Management System (SAP-Integrated)</div>
-            <div class="case-subtitle">Centralising enterprise asset lifecycle visibility across a national telecom operator</div>
+            <div class="case-num">02 — AI &amp; Automation · Robi Axiata</div>
+            <div class="case-title">AI-Powered Contact Centre Transformation</div>
+            <div class="case-subtitle">Deploying chatbots, voice bots, and AI agent-assist solutions to shift customer service from reactive to intelligent and self-serve</div>
+          </div>
+          <span class="case-tag tag-purple">AI · Automation</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <div class="case-section-label">The Problem</div>
+            <div class="case-section-text">Robi's contact centre was handling a high volume of repetitive customer queries — account balance, top-up, service activation — through human agents. Average handling time (AHT) was elevated, self-service adoption was low, and agent productivity was constrained by routine tasks that didn't require human judgement. The existing IVR system was rigid and offered no conversational capability or intelligent routing.</div>
+          </div>
+          <div>
+            <div class="case-section-label">What I Did As PM</div>
+            <div class="case-section-text">I led the product ownership for the AI-powered contact centre initiative — defining requirements for chatbot, voice bot, and agent-assist tools. I worked with AI/ML, engineering, and CX teams to map high-volume customer intents, define conversational flows, and set accuracy and containment targets. I governed the implementation roadmap, defined success metrics (self-service rate, AHT, containment), managed vendor coordination, and drove adoption through structured rollout and monitoring.</div>
+          </div>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><span class="case-metric-val">+35%</span><span class="case-metric-label">Self-Service Adoption</span></div>
+          <div class="case-metric"><span class="case-metric-val">−40%</span><span class="case-metric-label">Avg Handling Time</span></div>
+          <div class="case-metric"><span class="case-metric-val">Multi-channel</span><span class="case-metric-label">Chat + Voice + Assist</span></div>
+        </div>
+        <div class="case-footer">
+          <span class="pill">AI Chatbot</span><span class="pill">Voice Bot</span><span class="pill">Agent-Assist</span><span class="pill">CX Optimisation</span><span class="pill">Product Roadmapping</span>
+        </div>
+      </div>
+
+      <!-- CS 3: Network Asset Discovery & Reconciliation -->
+      <div class="case-card reveal" style="transition-delay:.12s">
+        <div class="case-header">
+          <div>
+            <div class="case-num">03 — Network Systems · Mar–Jun 2024 · Robi Axiata</div>
+            <div class="case-title">Telecom Network Asset Discovery &amp; Reconciliation System Enhancement</div>
+            <div class="case-subtitle">Modernising network asset tracking by integrating Ericsson 2G BTS, Transmission, and NCE IP elements into live reconciliation infrastructure</div>
+          </div>
+          <span class="case-tag tag-teal">Network · Integration</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <div class="case-section-label">The Problem</div>
+            <div class="case-section-text">Robi's network asset discovery and reconciliation system lacked adapters for key infrastructure categories — including Ericsson 2G BTS nodes, Ericsson Transmission assets, and NCE IP elements. These gaps meant large portions of the network estate weren't being tracked in real time, reconciliation was incomplete, and asset record quality was degraded by invalid entries. Location changes and newly serialised assets went undetected, creating operational blind spots.</div>
+          </div>
+          <div>
+            <div class="case-section-label">What I Did As PM</div>
+            <div class="case-section-text">I oversaw adapter integration, ensuring seamless compatibility with the existing discovery and reconciliation framework. I collaborated with engineering to optimise the asset data parsing and matching process, and managed the reconciliation workflow — validating and updating asset records against business requirements. I defined the real-time tracking requirements for location changes and new serialised assets, and drove down the occurrence of invalid entries in the system through improved matching logic and record governance.</div>
+          </div>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><span class="case-metric-val">3</span><span class="case-metric-label">Adapter Types Integrated</span></div>
+          <div class="case-metric"><span class="case-metric-val">Real-time</span><span class="case-metric-label">Asset Location Tracking</span></div>
+          <div class="case-metric"><span class="case-metric-val">↓ Invalid</span><span class="case-metric-label">Record Occurrences</span></div>
+        </div>
+        <div class="case-footer">
+          <span class="pill">System Integration</span><span class="pill">Reconciliation</span><span class="pill">Network Assets</span><span class="pill">Ericsson BSS</span><span class="pill">Data Quality</span>
+        </div>
+      </div>
+
+      <!-- CS 4: Financial Performance of Telecom Digital Assets -->
+      <div class="case-card reveal" style="transition-delay:.16s">
+        <div class="case-header">
+          <div>
+            <div class="case-num">04 — Financial Analytics · Apr–Jul 2024 · Robi Axiata</div>
+            <div class="case-title">Optimising Financial Performance of Telecom Digital Assets</div>
+            <div class="case-subtitle">Advanced SQL-driven financial analysis to improve asset utilisation efficiency and overall profitability</div>
+          </div>
+          <span class="case-tag tag-amber">Analytics · Finance</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <div class="case-section-label">The Problem</div>
+            <div class="case-section-text">Telecom digital assets were generating costs without proportional return. Financial performance metrics — ROI, depreciation curves, revenue contribution by asset — were not being calculated systematically or surfaced to decision-makers. Asset procurement and lifecycle decisions were made without data-backed justification, and management lacked visibility into which asset categories were underperforming or approaching end-of-life value thresholds.</div>
+          </div>
+          <div>
+            <div class="case-section-label">What I Did</div>
+            <div class="case-section-text">I developed complex SQL queries to compute critical financial metrics including ROI, revenue growth attribution, and depreciation schedules across the digital asset portfolio. I conducted time-series analysis to identify financial trends and performance anomalies at the asset category level. I generated comprehensive financial reports and presented actionable insights to senior management, enabling data-driven decisions on asset investment, retirement, and optimisation priorities.</div>
+          </div>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><span class="case-metric-val">+20%</span><span class="case-metric-label">Asset Utilisation</span></div>
+          <div class="case-metric"><span class="case-metric-val">+15%</span><span class="case-metric-label">Profitability Improvement</span></div>
+          <div class="case-metric"><span class="case-metric-val">C-Suite</span><span class="case-metric-label">Insights Delivered</span></div>
+        </div>
+        <div class="case-footer">
+          <span class="pill">Advanced SQL</span><span class="pill">Financial Modelling</span><span class="pill">ROI Analysis</span><span class="pill">Time-Series Analysis</span><span class="pill">Data Visualisation</span>
+        </div>
+      </div>
+
+      <!-- CS 5: DAM (SAP) -->
+      <div class="case-card reveal" style="transition-delay:.2s">
+        <div class="case-header">
+          <div>
+            <div class="case-num">05 — Enterprise Platform · Jan 2023–Sep 2024 · Robi Axiata</div>
+            <div class="case-title">Enterprise Digital Asset Management Platform (SAP-Integrated)</div>
+            <div class="case-subtitle">Centralising asset lifecycle visibility across a national telecom operator — from procurement to decommission</div>
           </div>
           <span class="case-tag tag-green">Platform · SAP</span>
         </div>
         <div class="case-body">
           <div>
             <div class="case-section-label">The Problem</div>
-            <div class="case-section-text">Robi manages thousands of physical and digital infrastructure assets — from network equipment and IT hardware to software licenses across departments. These assets were tracked inconsistently across siloed spreadsheets, ERP modules, and manual procurement records. The lack of a single source of truth meant asset utilisation was opaque, procurement decisions were made without full visibility, and audit cycles were painfully manual and error-prone.</div>
+            <div class="case-section-text">Robi's enterprise assets — network hardware, IT equipment, software licences — were tracked inconsistently across siloed spreadsheets, ERP modules, and manual procurement records. There was no single source of truth for the full asset estate. Procurement decisions were made without utilisation data, audit cycles were manual and error-prone, and operational teams lacked real-time visibility into asset health or location.</div>
           </div>
           <div>
             <div class="case-section-label">What I Did As PM</div>
-            <div class="case-section-text">I led the product strategy for a centralised Digital Asset Management platform built on SAP infrastructure. I worked with IT, procurement, finance, and facilities teams to map existing asset data flows, define a canonical data model, and prioritise features for the initial and subsequent releases. I drove the integration requirements between the DAM platform and existing ERP modules, ensuring asset lifecycle events (procurement → deployment → maintenance → decommission) were captured systematically. I also defined the dashboard requirements that gave operational teams real-time visibility into asset health and utilisation.</div>
+            <div class="case-section-text">I led the product planning and rollout of a centralised Digital Asset Management platform on SAP infrastructure. I worked with IT, procurement, finance, and facilities to define a canonical data model and map full asset lifecycle events (procurement → deployment → maintenance → decommission). I drove SAP integration requirements, defined dashboard specifications for operational teams, and governed the adoption rollout across departments — achieving measurable step-changes in both visibility and efficiency.</div>
           </div>
         </div>
         <div class="case-metrics">
-          <div class="case-metric">
-            <span class="case-metric-val">1 Source</span>
-            <span class="case-metric-label">Of truth for assets</span>
-          </div>
-          <div class="case-metric">
-            <span class="case-metric-val">Multi-dept</span>
-            <span class="case-metric-label">Cross-team adoption</span>
-          </div>
-          <div class="case-metric">
-            <span class="case-metric-val">Audit-ready</span>
-            <span class="case-metric-label">Compliance output</span>
-          </div>
+          <div class="case-metric"><span class="case-metric-val">+80%</span><span class="case-metric-label">Asset Visibility</span></div>
+          <div class="case-metric"><span class="case-metric-val">+85%</span><span class="case-metric-label">Operational Efficiency</span></div>
+          <div class="case-metric"><span class="case-metric-val">Audit-ready</span><span class="case-metric-label">Compliance Output</span></div>
         </div>
         <div class="case-footer">
-          <span class="pill">SAP ERP</span>
-          <span class="pill">Asset Lifecycle Management</span>
-          <span class="pill">Enterprise Integration</span>
-          <span class="pill">Stakeholder Alignment</span>
-          <span class="pill">Data Modelling</span>
+          <span class="pill">SAP ERP</span><span class="pill">Asset Lifecycle Management</span><span class="pill">Enterprise Integration</span><span class="pill">Data Modelling</span><span class="pill">Stakeholder Alignment</span>
         </div>
       </div>
 
-      <!-- Case 3: eSign -->
-      <div class="case-card reveal" style="transition-delay:0.16s">
+      <!-- CS 6: CCT Migration -->
+      <div class="case-card reveal" style="transition-delay:.24s">
         <div class="case-header">
           <div>
-            <div class="case-num">03 — Digital Transformation</div>
-            <div class="case-title">Enterprise eSign Digital Contract Platform</div>
-            <div class="case-subtitle">Eliminating paper-based contract workflows across commercial, legal, and procurement teams</div>
+            <div class="case-num">06 — Infrastructure · Dec 2023–Mar 2024 · Robi Axiata</div>
+            <div class="case-title">Call Centre Technology (CCT) Infrastructure Migration</div>
+            <div class="case-subtitle">Leading a zero-downtime contact centre infrastructure upgrade across servers, VRRP, and non-voice service connectivity</div>
           </div>
-          <span class="case-tag tag-amber">Digital · Workflow</span>
+          <span class="case-tag tag-rose">Migration · Infra</span>
         </div>
         <div class="case-body">
           <div>
             <div class="case-section-label">The Problem</div>
-            <div class="case-section-text">Contract execution at Robi was largely paper-driven — multi-party agreements required physical printing, courier routing, and manual archiving. In a commercial environment where vendor contracts, partner agreements, and regulatory documents are time-sensitive, this introduced significant delays, version control risks, and compliance gaps. The process was also impossible to audit efficiently, with contracts scattered across email threads and physical storage systems.</div>
+            <div class="case-section-text">Robi's contact centre infrastructure was running on ageing CCT servers that limited scalability, resilience, and integration with modern AI-assisted tools. A full infrastructure migration was required — with no tolerance for service downtime during cutover, as any disruption would directly impact customer service operations and satisfaction at scale.</div>
           </div>
           <div>
-            <div class="case-section-label">What I Did As PM</div>
-            <div class="case-section-text">I defined the product scope, user flows, and integration requirements for Robi's enterprise eSign platform. I conducted stakeholder interviews with legal, procurement, and commercial teams to understand pain points and map the existing contract lifecycle. I prioritised an MVP that addressed the highest-volume contract types first, then planned phased expansion. I drove integration with enterprise identity systems for signer authentication and worked closely with the legal team to ensure the solution met regulatory requirements for digital signatures in Bangladesh. Post-launch, I tracked adoption metrics and coordinated training rollouts across business units.</div>
+            <div class="case-section-label">What I Did</div>
+            <div class="case-section-text">I led the full migration programme — coordinating pre-cutoff, during-cutoff, and post-cutoff execution phases with strict adherence to timelines. I managed IP transition to new CCT servers, initiated VRRP between live and new servers, validated trunk connectivity, and ensured availability of the new report server. I also established connectivity for non-voice services (Webchat, VIVR) and directed a comprehensive post-migration testing phase covering service validation, report checking, and individual module monitoring.</div>
           </div>
         </div>
         <div class="case-metrics">
-          <div class="case-metric">
-            <span class="case-metric-val">~80%</span>
-            <span class="case-metric-label">Faster signing cycle</span>
-          </div>
-          <div class="case-metric">
-            <span class="case-metric-val">Paperless</span>
-            <span class="case-metric-label">Contract archiving</span>
-          </div>
-          <div class="case-metric">
-            <span class="case-metric-val">Multi-team</span>
-            <span class="case-metric-label">Enterprise rollout</span>
-          </div>
+          <div class="case-metric"><span class="case-metric-val">Zero</span><span class="case-metric-label">Downtime During Cutover</span></div>
+          <div class="case-metric"><span class="case-metric-val">VRRP</span><span class="case-metric-label">Redundancy Established</span></div>
+          <div class="case-metric"><span class="case-metric-val">Full</span><span class="case-metric-label">Module Validation</span></div>
         </div>
         <div class="case-footer">
-          <span class="pill">Workflow Automation</span>
-          <span class="pill">Digital Transformation</span>
-          <span class="pill">UX Research</span>
-          <span class="pill">Enterprise Integration</span>
-          <span class="pill">Change Management</span>
+          <span class="pill">Project Management</span><span class="pill">System Migration</span><span class="pill">VRRP</span><span class="pill">Telecoms Infrastructure</span><span class="pill">Risk Management</span>
+        </div>
+      </div>
+
+      <!-- CS 7: ShopUp Fintech -->
+      <div class="case-card reveal" style="transition-delay:.28s">
+        <div class="case-header">
+          <div>
+            <div class="case-num">07 — Fintech / Marketplace · ShopUp</div>
+            <div class="case-title">Cash Flow Tracking &amp; Real-Time Order Management Platform</div>
+            <div class="case-subtitle">Building data-driven financial and operational features for Bangladesh's leading B2B commerce platform</div>
+          </div>
+          <span class="case-tag tag-green">Fintech · B2B</span>
+        </div>
+        <div class="case-body">
+          <div>
+            <div class="case-section-label">The Problem</div>
+            <div class="case-section-text">ShopUp's B2B operations team was managing cash flow reconciliation and order tracking through manual, error-prone processes. Reconciliation errors were high and difficult to trace across the supply chain. Order status visibility was fragmented — field agents and operations managers couldn't access a unified real-time view of active orders, causing delays, miscommunication, and poor customer experience for merchant partners.</div>
+          </div>
+          <div>
+            <div class="case-section-label">What I Did As PM</div>
+            <div class="case-section-text">I implemented a data-driven approach to cash flow tracking — redesigning reconciliation logic to reduce error rates. I also scoped and led development of a digital operations panel providing real-time order monitoring and management. I worked closely with engineering to define data requirements, built the prioritised backlog, validated with operations stakeholders through FGDs, and tracked post-launch KPIs to confirm impact.</div>
+          </div>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><span class="case-metric-val">−48%</span><span class="case-metric-label">Reconciliation Errors</span></div>
+          <div class="case-metric"><span class="case-metric-val">−55%</span><span class="case-metric-label">Order Processing Time</span></div>
+          <div class="case-metric"><span class="case-metric-val">+20%</span><span class="case-metric-label">Forecast Accuracy</span></div>
+        </div>
+        <div class="case-footer">
+          <span class="pill">Fintech</span><span class="pill">B2B Marketplace</span><span class="pill">Data Analytics</span><span class="pill">Reconciliation</span><span class="pill">Operations PM</span>
         </div>
       </div>
 
@@ -1385,128 +673,100 @@ footer {
 
 <hr class="section-rule">
 
-<!-- ══ AI PROJECTS ══ -->
+<!-- AI PROJECTS -->
 <section id="ai-projects" class="section">
   <div class="page">
     <div class="section-label">Beyond the day job</div>
     <h2 class="section-h2">AI &amp; <span>Automation Projects</span></h2>
-    <p style="color:var(--text-2);font-size:15px;margin-bottom:2.5rem;max-width:620px;line-height:1.75;" class="reveal">I don't wait for my company to introduce AI — I build with it. These are projects I've independently designed and shipped to improve my own productivity and explore the boundaries of AI-augmented product workflows.</p>
+    <p style="color:var(--text-2);font-size:15px;margin-bottom:2.5rem;max-width:620px;line-height:1.75" class="reveal">I don't wait for my company to introduce AI — I build with it. These are projects I've independently designed and shipped to improve productivity and explore AI-augmented product workflows.</p>
     <div class="ai-grid">
-
       <div class="ai-card reveal">
         <div class="ai-card-icon">🤖</div>
         <div class="ai-card-title">AI Job Application Automation Agent</div>
-        <div class="ai-card-desc">Built an end-to-end automation pipeline using n8n and GPT-4 that monitors job boards, filters listings against a defined criteria matrix, auto-drafts personalised cover letters tailored to each JD, and logs applications to a structured tracker — reducing manual effort by 90% while improving relevance of applications.</div>
-        <div class="ai-stack">
-          <span class="ai-stack-pill">n8n</span>
-          <span class="ai-stack-pill">GPT-4</span>
-          <span class="ai-stack-pill">Webhooks</span>
-          <span class="ai-stack-pill">Airtable</span>
-        </div>
+        <div class="ai-card-desc">End-to-end automation pipeline that monitors job boards, filters listings against a criteria matrix, auto-drafts personalised cover letters tailored to each JD, and logs applications to a structured tracker — reducing manual effort by 90% while improving application relevance.</div>
+        <div class="ai-stack"><span class="ai-stack-pill">n8n</span><span class="ai-stack-pill">GPT-4</span><span class="ai-stack-pill">Webhooks</span><span class="ai-stack-pill">Airtable</span></div>
       </div>
-
-      <div class="ai-card reveal" style="transition-delay:0.08s">
+      <div class="ai-card reveal" style="transition-delay:.08s">
         <div class="ai-card-icon">💬</div>
         <div class="ai-card-title">WhizPal — WhatsApp Productivity Assistant</div>
-        <div class="ai-card-desc">Conceptualised and prototyped WhizPal, a WhatsApp-native AI assistant designed to help busy professionals manage tasks, set reminders, summarise long documents, and draft quick responses — all within the messaging platform they already use daily. Defined product flows, persona, and MVP feature set.</div>
-        <div class="ai-stack">
-          <span class="ai-stack-pill">WhatsApp API</span>
-          <span class="ai-stack-pill">GPT-4</span>
-          <span class="ai-stack-pill">Product Design</span>
-          <span class="ai-stack-pill">Make.com</span>
-        </div>
+        <div class="ai-card-desc">Conceptualised and prototyped a WhatsApp-native AI assistant for busy professionals — managing tasks, setting reminders, summarising documents, and drafting replies. Defined full product flows, persona, and MVP feature set ready for development.</div>
+        <div class="ai-stack"><span class="ai-stack-pill">WhatsApp API</span><span class="ai-stack-pill">GPT-4</span><span class="ai-stack-pill">Make.com</span><span class="ai-stack-pill">Product Design</span></div>
       </div>
-
-      <div class="ai-card reveal" style="transition-delay:0.16s">
+      <div class="ai-card reveal" style="transition-delay:.16s">
         <div class="ai-card-icon">⚙️</div>
-        <div class="ai-card-title">Workflow Automation Systems</div>
-        <div class="ai-card-desc">Designed and deployed multi-step automation workflows using Make.com and public APIs to automate content curation, research summarisation, and Slack notifications. Reduced recurring manual tasks by mapping business processes to automation nodes — applying the same product thinking I use at work to personal systems.</div>
-        <div class="ai-stack">
-          <span class="ai-stack-pill">Make.com</span>
-          <span class="ai-stack-pill">REST APIs</span>
-          <span class="ai-stack-pill">Zapier</span>
-          <span class="ai-stack-pill">Notion</span>
-        </div>
+        <div class="ai-card-title">Multi-Step Workflow Automation Systems</div>
+        <div class="ai-card-desc">Designed and deployed automation workflows for content curation, research summarisation, and Slack notification pipelines using Make.com and public APIs — applying the same product process thinking I use professionally to personal productivity systems.</div>
+        <div class="ai-stack"><span class="ai-stack-pill">Make.com</span><span class="ai-stack-pill">REST APIs</span><span class="ai-stack-pill">Zapier</span><span class="ai-stack-pill">Notion</span></div>
       </div>
-
-      <div class="ai-card reveal" style="transition-delay:0.24s">
+      <div class="ai-card reveal" style="transition-delay:.24s">
         <div class="ai-card-icon">📊</div>
-        <div class="ai-card-title">AI-Driven Product Workflow Experiments</div>
-        <div class="ai-card-desc">Actively experimenting with GPT-based tools to accelerate product management workflows — including AI-assisted PRD generation, competitive analysis summarisation, user story structuring, and sprint retrospective analysis. Documenting findings and building a personal PM productivity toolkit.</div>
-        <div class="ai-stack">
-          <span class="ai-stack-pill">Prompt Engineering</span>
-          <span class="ai-stack-pill">ChatGPT</span>
-          <span class="ai-stack-pill">Claude</span>
-          <span class="ai-stack-pill">Notion AI</span>
-        </div>
+        <div class="ai-card-title">AI-Driven PM Workflow Toolkit</div>
+        <div class="ai-card-desc">Actively building a GPT-based PM productivity toolkit — AI-assisted PRD generation, competitive research summarisation, user story structuring, and sprint retrospective analysis. Documenting prompt engineering patterns that 10x product work speed.</div>
+        <div class="ai-stack"><span class="ai-stack-pill">Prompt Engineering</span><span class="ai-stack-pill">ChatGPT</span><span class="ai-stack-pill">Claude</span><span class="ai-stack-pill">Notion AI</span></div>
       </div>
-
     </div>
   </div>
 </section>
 
 <hr class="section-rule">
 
-<!-- ══ SKILLS ══ -->
+<!-- SKILLS -->
 <section id="skills" class="section">
   <div class="page">
     <div class="section-label">Capabilities</div>
     <h2 class="section-h2">Core <span>Skills</span></h2>
     <div class="skills-grid">
-
       <div class="skill-group reveal">
-        <div class="skill-group-title"><span class="skill-group-icon">🎯</span> Product</div>
+        <div class="skill-group-title"><span>🎯</span> Product</div>
         <ul class="skill-list">
-          <li class="skill-item"><span>Product Strategy</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="90"></div></div></li>
-          <li class="skill-item"><span>Roadmapping</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="88"></div></div></li>
-          <li class="skill-item"><span>Stakeholder Management</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="92"></div></div></li>
+          <li class="skill-item"><span>Product Strategy &amp; Roadmapping</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="92"></div></div></li>
+          <li class="skill-item"><span>Feature Dev (0→1 &amp; Iteration)</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="88"></div></div></li>
+          <li class="skill-item"><span>Stakeholder Management</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="91"></div></div></li>
           <li class="skill-item"><span>Agile / Scrum</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="85"></div></div></li>
-          <li class="skill-item"><span>PRD Writing</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="87"></div></div></li>
-          <li class="skill-item"><span>User Story Mapping</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="83"></div></div></li>
+          <li class="skill-item"><span>Wireframing &amp; PRD Writing</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="83"></div></div></li>
+          <li class="skill-item"><span>FGD / User Research</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="87"></div></div></li>
         </ul>
       </div>
-
-      <div class="skill-group reveal" style="transition-delay:0.07s">
-        <div class="skill-group-title"><span class="skill-group-icon">⚙️</span> Technical</div>
+      <div class="skill-group reveal" style="transition-delay:.07s">
+        <div class="skill-group-title"><span>⚙️</span> Technical</div>
         <ul class="skill-list">
-          <li class="skill-item"><span>Telecom BSS / OSS</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="94"></div></div></li>
-          <li class="skill-item"><span>Billing Systems</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="92"></div></div></li>
-          <li class="skill-item"><span>Mediation Platforms</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="93"></div></div></li>
-          <li class="skill-item"><span>API Integrations</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="78"></div></div></li>
-          <li class="skill-item"><span>SAP ERP</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="74"></div></div></li>
-          <li class="skill-item"><span>SQL (Analytical)</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="68"></div></div></li>
+          <li class="skill-item"><span>Telecom BSS / OSS / CDR Mediation</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="95"></div></div></li>
+          <li class="skill-item"><span>Billing &amp; Interconnect Systems</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="92"></div></div></li>
+          <li class="skill-item"><span>API Integration</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div></li>
+          <li class="skill-item"><span>Python &amp; Shell Scripting</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="72"></div></div></li>
+          <li class="skill-item"><span>SAP ERP / Asset Management</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="78"></div></div></li>
+          <li class="skill-item"><span>Linux Administration</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="68"></div></div></li>
         </ul>
       </div>
-
-      <div class="skill-group reveal" style="transition-delay:0.14s">
-        <div class="skill-group-title"><span class="skill-group-icon">📈</span> Analytics</div>
+      <div class="skill-group reveal" style="transition-delay:.14s">
+        <div class="skill-group-title"><span>📈</span> Analytics</div>
         <ul class="skill-list">
-          <li class="skill-item"><span>KPI Monitoring</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="89"></div></div></li>
-          <li class="skill-item"><span>Revenue Analysis</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="86"></div></div></li>
-          <li class="skill-item"><span>Ops Dashboards</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="82"></div></div></li>
-          <li class="skill-item"><span>A/B Testing</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="65"></div></div></li>
-          <li class="skill-item"><span>Data-driven Prioritisation</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="84"></div></div></li>
+          <li class="skill-item"><span>SQL (Advanced Querying)</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="84"></div></div></li>
+          <li class="skill-item"><span>Revenue &amp; Financial Analysis</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="88"></div></div></li>
+          <li class="skill-item"><span>A/B Testing</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div></li>
+          <li class="skill-item"><span>Cohort &amp; Funnel Analysis</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="76"></div></div></li>
+          <li class="skill-item"><span>KPI Monitoring &amp; Dashboards</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="89"></div></div></li>
+          <li class="skill-item"><span>P&amp;L Ownership &amp; ARPU Growth</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="74"></div></div></li>
         </ul>
       </div>
-
-      <div class="skill-group reveal" style="transition-delay:0.21s">
-        <div class="skill-group-title"><span class="skill-group-icon">🤖</span> AI & Automation</div>
+      <div class="skill-group reveal" style="transition-delay:.21s">
+        <div class="skill-group-title"><span>🤖</span> AI &amp; Automation</div>
         <ul class="skill-list">
-          <li class="skill-item"><span>n8n Workflows</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div></li>
+          <li class="skill-item"><span>AI/ML in Ops &amp; Engagement</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="82"></div></div></li>
+          <li class="skill-item"><span>n8n Workflow Automation</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="80"></div></div></li>
           <li class="skill-item"><span>Make.com</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="76"></div></div></li>
-          <li class="skill-item"><span>GPT Prompt Engineering</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="84"></div></div></li>
-          <li class="skill-item"><span>AI Product Workflows</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="78"></div></div></li>
-          <li class="skill-item"><span>API-based Automation</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="72"></div></div></li>
+          <li class="skill-item"><span>GPT Prompt Engineering</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="85"></div></div></li>
+          <li class="skill-item"><span>Anomaly &amp; Pattern Detection</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="86"></div></div></li>
+          <li class="skill-item"><span>Chatbot / Voice Bot PM</span><div class="skill-bar-track"><div class="skill-bar-fill" data-w="79"></div></div></li>
         </ul>
       </div>
-
     </div>
   </div>
 </section>
 
 <hr class="section-rule">
 
-<!-- ══ CONTACT ══ -->
+<!-- CONTACT -->
 <section id="contact" class="section">
   <div class="page">
     <div class="contact-wrap">
@@ -1515,21 +775,21 @@ footer {
         <div class="contact-headline">Open to<br><em>PM roles</em><br>globally.</div>
         <div class="contact-target">
           <div class="hero-badge-dot"></div>
-          Available now — Singapore &amp; Europe preferred
+          Available now · Singapore &amp; Europe preferred
         </div>
-        <p class="contact-desc">I'm actively exploring Product Manager, Senior PM, and Platform PM roles in Singapore, the Netherlands, Germany, Finland, Denmark, Belgium, Estonia, Malaysia, and Thailand. If you're building a product team that values systems thinking and execution in complex environments, let's talk.</p>
-        <a href="mailto:maruf@email.com" class="btn-fill" style="display:inline-flex;">Send an Email →</a>
+        <p class="contact-desc">I'm actively exploring Product Manager, Senior PM, and Platform PM roles in <strong style="color:var(--text)">Singapore, Netherlands, Germany, Finland, Denmark, Belgium, Estonia, Malaysia, and Thailand</strong>. I bring 5+ years of high-stakes product experience, German B2 language skills, and immediate availability to relocate. If you're building a product team that demands rigor, systems thinking, and a proven track record — let's talk.</p>
+        <a href="mailto:hasanrokonimaruf@gmail.com" class="btn-fill">Send an Email →</a>
       </div>
-      <div class="contact-links reveal" style="transition-delay:0.1s">
-        <a href="mailto:maruf.rokoni@email.com" class="contact-link">
+      <div class="contact-links reveal" style="transition-delay:.1s">
+        <a href="mailto:hasanrokonimaruf@gmail.com" class="contact-link">
           <div class="contact-link-icon">@</div>
           <div class="contact-link-body">
             <span class="contact-link-label">Email</span>
-            <span class="contact-link-value">maruf.rokoni@email.com</span>
+            <span class="contact-link-value">hasanrokonimaruf@gmail.com</span>
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
-        <a href="https://linkedin.com/in/marufrokoni" target="_blank" class="contact-link">
+        <a href="https://www.linkedin.com/in/marufrokoni" target="_blank" class="contact-link">
           <div class="contact-link-icon">in</div>
           <div class="contact-link-body">
             <span class="contact-link-label">LinkedIn</span>
@@ -1537,7 +797,15 @@ footer {
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
-        <a href="#" onclick="alert('Connect your CV PDF here')" class="contact-link">
+        <a href="tel:+8801768521219" class="contact-link">
+          <div class="contact-link-icon" style="font-size:18px">📞</div>
+          <div class="contact-link-body">
+            <span class="contact-link-label">Phone / WhatsApp</span>
+            <span class="contact-link-value">+880 1768-521219</span>
+          </div>
+          <span class="contact-link-arrow">→</span>
+        </a>
+        <a href="#" onclick="alert('Link your CV PDF file here before deploying.')" class="contact-link">
           <div class="contact-link-icon">↓</div>
           <div class="contact-link-body">
             <span class="contact-link-label">Resume</span>
@@ -1545,8 +813,8 @@ footer {
           </div>
           <span class="contact-link-arrow">→</span>
         </a>
-        <div class="contact-link" style="cursor:default;">
-          <div class="contact-link-icon">📍</div>
+        <div class="contact-link" style="cursor:default">
+          <div class="contact-link-icon" style="font-size:18px">📍</div>
           <div class="contact-link-body">
             <span class="contact-link-label">Location</span>
             <span class="contact-link-value">Dhaka, Bangladesh · Open to Relocation</span>
@@ -1559,7 +827,7 @@ footer {
 
 <div class="page">
   <footer>
-    <span class="footer-copy">© 2026 Maruf Hasan Rokoni · Digital Product Manager</span>
+    <span class="footer-copy">© 2026 Maruf Hasan Rokoni · Product Manager · hasanrokonimaruf@gmail.com</span>
     <div class="footer-avail">
       <div class="hero-badge-dot"></div>
       Open to global PM opportunities
@@ -1568,60 +836,35 @@ footer {
 </div>
 
 <script>
-// Theme
-function toggleTheme() {
-  const html = document.documentElement;
-  const btn = document.getElementById('themeBtn');
-  if (html.dataset.theme === 'dark') {
-    html.dataset.theme = 'light';
-    btn.textContent = '🌙';
-  } else {
-    html.dataset.theme = 'dark';
-    btn.textContent = '☀️';
-  }
+function toggleTheme(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  if(h.dataset.theme==='dark'){h.dataset.theme='light';b.textContent='🌙'}
+  else{h.dataset.theme='dark';b.textContent='☀️'}
 }
+function toggleDrawer(){document.getElementById('drawer').classList.toggle('open')}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open')}
 
-// Mobile drawer
-function toggleDrawer() {
-  document.getElementById('drawer').classList.toggle('open');
-}
-function closeDrawer() {
-  document.getElementById('drawer').classList.remove('open');
-}
-
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
       e.target.classList.add('in');
-      // Animate skill bars inside
-      e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-        bar.style.width = bar.dataset.w + '%';
-      });
+      e.target.querySelectorAll('.skill-bar-fill').forEach(b=>b.style.width=b.dataset.w+'%');
     }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+},{threshold:0.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Smooth scroll for nav
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const id = a.getAttribute('href');
-    if (id === '#') return;
-    const target = document.querySelector(id);
-    if (target) {
-      e.preventDefault();
-      closeDrawer();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+     if(id==='#')return;
+    const t=document.querySelector(id);
+    if(t){e.preventDefault();closeDrawer();t.scrollIntoView({behavior:'smooth'})}
   });
 });
-
-// Nav bg on scroll
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  nav.style.borderBottomColor = window.scrollY > 50 ? 'var(--border-strong)' : 'var(--border)';
+const nav=document.querySelector('nav');
+window.addEventListener('scroll',()=>{
+  nav.style.borderBottomColor=window.scrollY>50?'var(--border-strong)':'var(--border)';
 });
 </script>
 </body>
